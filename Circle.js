@@ -189,6 +189,7 @@ export class ProgressCircle extends Component {
               width: size - 4 * textOffset,
               height: size - 4 * textOffset,
               borderRadius: size / 2,
+              overflow: 'hidden',
             }}
           >
             <View
