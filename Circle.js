@@ -198,7 +198,7 @@ export class ProgressCircle extends Component {
                   fontSize: textSize / 4.5,
                   fontWeight: '300',
                   flex: 1,
-                  backgroundColor: innerColor,
+                  backgroundColor: innerColor || '#000',
                 },
                 textStyle,
               ]}
