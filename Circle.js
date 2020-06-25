@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Animated, StyleSheet, Text, View } from 'react-native';
 import { Surface as ARTSurface } from '@react-native-community/art';
@@ -49,7 +49,7 @@ export class ProgressCircle extends Component {
     borderWidth: 1,
     color: 'rgba(0, 122, 255, 1)',
     direction: 'clockwise',
-    formatText: progress => `${Math.round(progress * 100)}%`,
+    formatText: (progress) => `${Math.round(progress * 100)}%`,
     progress: 0,
     showsText: false,
     size: 40,
@@ -66,7 +66,7 @@ export class ProgressCircle extends Component {
 
   componentDidMount() {
     if (this.props.animated) {
-      this.props.progress.addListener(event => {
+      this.props.progress.addListener((event) => {
         this.progressValue = event.value;
         if (this.props.showsText || this.progressValue === 1) {
           this.forceUpdate();
@@ -97,6 +97,7 @@ export class ProgressCircle extends Component {
       unfilledColor,
       endAngle,
       allowFontScaling,
+      innerColor,
       ...restProps
     } = this.props;
 
@@ -146,6 +147,7 @@ export class ProgressCircle extends Component {
               direction={direction}
               stroke={unfilledColor}
               strokeWidth={thickness}
+              backgroundColor="red"
             />
           ) : (
             false
@@ -173,7 +175,7 @@ export class ProgressCircle extends Component {
               stroke={borderColor || color}
               strokeCap={strokeCap}
               strokeWidth={border}
-            />
+            ></Arc>
           ) : (
             false
           )}
@@ -182,13 +184,11 @@ export class ProgressCircle extends Component {
           <View
             style={{
               position: 'absolute',
-              left: textOffset,
-              top: textOffset,
-              width: textSize,
-              height: textSize,
-              borderRadius: textSize / 2,
-              alignItems: 'center',
-              justifyContent: 'center',
+              left: textOffset * 2,
+              top: textOffset * 2,
+              width: size - 4 * textOffset,
+              height: size - 4 * textOffset,
+              borderRadius: size / 2,
             }}
           >
             <View
@@ -197,12 +197,14 @@ export class ProgressCircle extends Component {
                   color,
                   fontSize: textSize / 4.5,
                   fontWeight: '300',
+                  flex: 1,
+                  backgroundColor: innerColor,
                 },
                 textStyle,
               ]}
               allowFontScaling={allowFontScaling}
             >
-              {formatText(progressValue)}
+              {formatText?.(progressValue)}
             </View>
           </View>
         ) : (
