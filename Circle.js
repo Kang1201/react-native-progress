@@ -186,8 +186,8 @@ export class ProgressCircle extends Component {
               position: 'absolute',
               left: textOffset * 2,
               top: textOffset * 2,
-              width: size - 4 * textOffset,
-              height: size - 4 * textOffset,
+              width: size - 4 * textOffset + thickness * 2,
+              height: size - 4 * textOffset + thickness * 2,
               borderRadius: size / 2,
               overflow: 'hidden',
             }}
