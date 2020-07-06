@@ -175,7 +175,7 @@ export class ProgressCircle extends Component {
               stroke={borderColor || color}
               strokeCap={strokeCap}
               strokeWidth={border}
-            ></Arc>
+            />
           ) : (
             false
           )}
@@ -184,8 +184,8 @@ export class ProgressCircle extends Component {
           <View
             style={{
               position: 'absolute',
-              left: textOffset * 2,
-              top: textOffset * 2,
+              left: textOffset * 2 - thickness,
+              top: textOffset * 2 - thickness,
               width: size - 4 * textOffset + thickness * 2,
               height: size - 4 * textOffset + thickness * 2,
               borderRadius: size / 2,
